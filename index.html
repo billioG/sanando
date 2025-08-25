@@ -51,14 +51,6 @@
       color: var(--secondary);
     }
 
-    iframe {
-      width: 100%;
-      height: 150px;
-      border: none;
-      border-radius: 8px;
-      margin-top: 10px;
-    }
-
     textarea {
       width: 100%;
       height: 100px;
@@ -89,7 +81,7 @@
 </head>
 <body>
   <h1>📖 30 días para sanar y perdonar</h1>
-  <h2>Reflexiones diarias + música + journaling</h2>
+  <h2>Reflexiones diarias + versículos + journaling</h2>
 
   <div class="toggle-mode">
     <button onclick="toggleMode()">🌗 Cambiar modo</button>
@@ -99,36 +91,36 @@
 
   <script>
     const days = [
-      { verse: "Salmo 34:18", phrase: "Dios está cerca de tu corazón herido.", music: "https://www.youtube.com/embed/Kw7rPOz6uP8" },
-      { verse: "Mateo 11:28-30", phrase: "Descansa en mí, yo te daré alivio.", music: "https://www.youtube.com/embed/1rLRAuv9FJY" },
-      { verse: "Salmo 147:3", phrase: "Yo sano los corazones rotos y vendo sus heridas.", music: "https://www.youtube.com/embed/nXpR2VL9Yu8" },
-      { verse: "Isaías 41:10", phrase: "No temas, yo estoy contigo.", music: "https://www.youtube.com/embed/o8Or15FWW0U" },
-      { verse: "2 Corintios 1:3-4", phrase: "Yo te consuelo, para que tú consueles a otros.", music: "https://www.youtube.com/embed/TPHvuY-n4l8" },
-      { verse: "Romanos 8:28", phrase: "Todo obrará para bien, aunque hoy no lo veas.", music: "https://www.youtube.com/embed/dAB5JXeWL0E" },
-      { verse: "Filipenses 4:6-7", phrase: "La paz que doy, sobrepasa todo entendimiento.", music: "https://www.youtube.com/embed/zKRXZQvM07c" },
-      { verse: "Mateo 6:14-15", phrase: "Si perdonas, serás libre.", music: "https://www.youtube.com/embed/cfqYBOe5Yps" },
-      { verse: "Efesios 4:31-32", phrase: "Deja la amargura atrás.", music: "https://www.youtube.com/embed/F2MKGdWvN0s" },
-      { verse: "Colosenses 3:12-14", phrase: "Vístete de compasión.", music: "https://www.youtube.com/embed/JnM_Uvng1V8" },
-      { verse: "Lucas 6:27-36", phrase: "Ama a quien te hirió.", music: "https://www.youtube.com/embed/LkGsOK9PGp4" },
-      { verse: "Romanos 12:17-21", phrase: "Vence el mal con el bien.", music: "https://www.youtube.com/embed/sFjYfvRxQQg" },
-      { verse: "Proverbios 4:23", phrase: "Cuida tu corazón más que nada.", music: "https://www.youtube.com/embed/V0rO7Nxm2IY" },
-      { verse: "Salmo 103:8-14", phrase: "Dios no guarda rencor, tú tampoco.", music: "https://www.youtube.com/embed/vWJAbV0Mi1E" },
-      { verse: "Proverbios 3:5-6", phrase: "Confía en mí con todo tu corazón.", music: "https://www.youtube.com/embed/Z4VR1bxciC8" },
-      { verse: "Jeremías 17:5-8", phrase: "Confía en mí, no en las personas.", music: "https://www.youtube.com/embed/j_tNql5Z7zA" },
-      { verse: "Isaías 26:3-4", phrase: "Yo soy tu roca eterna.", music: "https://www.youtube.com/embed/KT07FUEj1IU" },
-      { verse: "Salmo 20:7", phrase: "Confía en mí más que en tus fuerzas.", music: "https://www.youtube.com/embed/J3ZKDjABJ44" },
-      { verse: "1 Pedro 5:7-10", phrase: "Yo cuido de ti.", music: "https://www.youtube.com/embed/rfM7Wpk-ymQ" },
-      { verse: "Hebreos 10:23", phrase: "Permanece firme en la esperanza.", music: "https://www.youtube.com/embed/B-v3nfsOKTQ" },
-      { verse: "Gálatas 6:1-2", phrase: "Restaura con humildad.", music: "https://www.youtube.com/embed/N1yNGgOKKZM" },
-      { verse: "1 Corintios 13:1-13", phrase: "Sin amor, nada soy.", music: "https://www.youtube.com/embed/V3Pc7vKnTF4" },
-      { verse: "1 Juan 4:7-21", phrase: "Dios es amor.", music: "https://www.youtube.com/embed/Rxj2vq5fS1A" },
-      { verse: "Juan 15:9-17", phrase: "Permanece en mi amor.", music: "https://www.youtube.com/embed/F5JlGZ4rQn8" },
-      { verse: "Proverbios 17:9", phrase: "El amor perdona y une.", music: "https://www.youtube.com/embed/ECdS0Hh-Db4" },
-      { verse: "Efesios 5:1-2", phrase: "Imita a Dios y ama.", music: "https://www.youtube.com/embed/yh7lvSRJRGg" },
-      { verse: "Filipenses 2:1-5", phrase: "Vive en humildad y unidad.", music: "https://www.youtube.com/embed/z7kUuW8nX4Y" },
-      { verse: "Romanos 5:5", phrase: "El amor ha sido derramado en ti.", music: "https://www.youtube.com/embed/fUjCB1zD2NE" },
-      { verse: "Isaías 43:18-19", phrase: "Yo haré algo nuevo en ti.", music: "https://www.youtube.com/embed/L4Hh6SxfZbU" },
-      { verse: "2 Corintios 5:17-21", phrase: "Eres nueva creación.", music: "https://www.youtube.com/embed/8tPrY8T2iEo" }
+      { verse: "Salmo 34:18", text: "Cercano está Jehová a los quebrantados de corazón; y salva a los contritos de espíritu.", phrase: "Dios está cerca de tu corazón herido." },
+      { verse: "Mateo 11:28-30", text: "Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar.", phrase: "Descansa en mí, yo te daré alivio." },
+      { verse: "Salmo 147:3", text: "Él sana a los quebrantados de corazón, y venda sus heridas.", phrase: "Yo sano los corazones rotos y vendo sus heridas." },
+      { verse: "Isaías 41:10", text: "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo.", phrase: "No temas, yo estoy contigo." },
+      { verse: "2 Corintios 1:3-4", text: "El Dios de toda consolación, el cual nos consuela en todas nuestras tribulaciones.", phrase: "Yo te consuelo, para que tú consueles a otros." },
+      { verse: "Romanos 8:28", text: "A los que aman a Dios, todas las cosas les ayudan a bien.", phrase: "Todo obrará para bien, aunque hoy no lo veas." },
+      { verse: "Filipenses 4:6-7", text: "La paz de Dios, que sobrepasa todo entendimiento, guardará vuestros corazones.", phrase: "La paz que doy, sobrepasa todo entendimiento." },
+      { verse: "Mateo 6:14-15", text: "Si perdonáis a los hombres sus ofensas, os perdonará también a vosotros vuestro Padre celestial.", phrase: "Si perdonas, serás libre." },
+      { verse: "Efesios 4:31-32", text: "Quítense de vosotros toda amargura... antes sed benignos unos con otros.", phrase: "Deja la amargura atrás." },
+      { verse: "Colosenses 3:12-14", text: "Vestíos de entrañable misericordia... y sobre todas estas cosas vestíos de amor.", phrase: "Vístete de compasión." },
+      { verse: "Lucas 6:27-36", text: "Amad a vuestros enemigos, haced bien a los que os aborrecen.", phrase: "Ama a quien te hirió." },
+      { verse: "Romanos 12:17-21", text: "No seáis vencidos de lo malo, sino vence con el bien el mal.", phrase: "Vence el mal con el bien." },
+      { verse: "Proverbios 4:23", text: "Sobre toda cosa guardada, guarda tu corazón; porque de él mana la vida.", phrase: "Cuida tu corazón más que nada." },
+      { verse: "Salmo 103:8-14", text: "Misericordioso y clemente es Jehová, lento para la ira y grande en misericordia.", phrase: "Dios no guarda rencor, tú tampoco." },
+      { verse: "Proverbios 3:5-6", text: "Confía en Jehová con todo tu corazón, y no te apoyes en tu propia prudencia.", phrase: "Confía en mí con todo tu corazón." },
+      { verse: "Jeremías 17:5-8", text: "Bendito el varón que confía en Jehová, y cuya confianza es Jehová.", phrase: "Confía en mí, no en las personas." },
+      { verse: "Isaías 26:3-4", text: "Tú guardarás en completa paz a aquel cuyo pensamiento en ti persevera.", phrase: "Yo soy tu roca eterna." },
+      { verse: "Salmo 20:7", text: "Estos confían en carros, y aquéllos en caballos; mas nosotros del nombre de Jehová nuestro Dios tendremos memoria.", phrase: "Confía en mí más que en tus fuerzas." },
+      { verse: "1 Pedro 5:7-10", text: "Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.", phrase: "Yo cuido de ti." },
+      { verse: "Hebreos 10:23", text: "Mantengamos firme, sin fluctuar, la profesión de nuestra esperanza, porque fiel es el que prometió.", phrase: "Permanece firme en la esperanza." },
+      { verse: "Gálatas 6:1-2", text: "Sobrellevad los unos las cargas de los otros, y cumplid así la ley de Cristo.", phrase: "Restaura con humildad." },
+      { verse: "1 Corintios 13:1-13", text: "El amor es sufrido, es benigno... el amor nunca deja de ser.", phrase: "Sin amor, nada soy." },
+      { verse: "1 Juan 4:7-21", text: "El que no ama, no ha conocido a Dios; porque Dios es amor.", phrase: "Dios es amor." },
+      { verse: "Juan 15:9-17", text: "Como el Padre me ha amado, así también yo os he amado; permaneced en mi amor.", phrase: "Permanece en mi amor." },
+      { verse: "Proverbios 17:9", text: "El que cubre la falta busca amistad; mas el que la divulga, aparta al amigo.", phrase: "El amor perdona y une." },
+      { verse: "Efesios 5:1-2", text: "Sed, pues, imitadores de Dios como hijos amados. Y andad en amor.", phrase: "Imita a Dios y ama." },
+      { verse: "Filipenses 2:1-5", text: "Nada hagáis por contienda o por vanagloria; antes bien con humildad.", phrase: "Vive en humildad y unidad." },
+      { verse: "Romanos 5:5", text: "El amor de Dios ha sido derramado en nuestros corazones por el Espíritu Santo.", phrase: "El amor ha sido derramado en ti." },
+      { verse: "Isaías 43:18-19", text: "No os acordéis de las cosas pasadas... he aquí que yo hago cosa nueva.", phrase: "Yo haré algo nuevo en ti." },
+      { verse: "2 Corintios 5:17-21", text: "De modo que si alguno está en Cristo, nueva criatura es.", phrase: "Eres nueva creación." }
     ];
 
     const planDiv = document.getElementById("plan");
@@ -141,8 +133,8 @@
 
       container.innerHTML = `
         <h3>Día ${index + 1}: ${day.verse}</h3>
-        <p><strong>Frase:</strong> ${day.phrase}</p>
-        <iframe src="${day.music}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p><strong>📜 Texto bíblico:</strong> ${day.text}</p>
+        <p><strong>💡 Frase del día:</strong> ${day.phrase}</p>
         <label for="journal${index}"><strong>📝 Mi reflexión del día:</strong></label>
         <textarea id="journal${index}" placeholder="Escribe lo que sentiste, lo que entendiste, o una oración...">${savedText}</textarea>
       `;
