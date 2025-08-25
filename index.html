@@ -77,10 +77,25 @@
       border-radius: 20px;
       cursor: pointer;
     }
+
+    .locked {
+      filter: blur(4px);
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    .locked::before {
+      content: "🔒 Disponible próximamente";
+      color: red;
+      display: block;
+      text-align: center;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <h1>📖 30 días para sanar y perdonar</h1>
+
   <div class="toggle-mode">
     <button onclick="toggleMode()">🌗 Cambiar modo</button>
   </div>
@@ -88,6 +103,10 @@
   <div id="plan"></div>
 
   <script>
+    const startDate = new Date("2025-08-24"); // Cambia esta fecha si quieres iniciar otro día
+    const today = new Date();
+    const daysPassed = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
+
     const days = [
       { verse: "Salmo 34:18", text: "Cercano está Jehová a los quebrantados de corazón; y salva a los contritos de espíritu.", phrase: "Dios está cerca de tu corazón herido." },
       { verse: "Mateo 11:28-30", text: "Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar.", phrase: "Descansa en mí, yo te daré alivio." },
@@ -106,17 +125,17 @@
       { verse: "Proverbios 3:5-6", text: "Confía en Jehová con todo tu corazón, y no te apoyes en tu propia prudencia.", phrase: "Confía en mí con todo tu corazón." },
       { verse: "Jeremías 17:5-8", text: "Bendito el varón que confía en Jehová, y cuya confianza es Jehová.", phrase: "Confía en mí, no en las personas." },
       { verse: "Isaías 26:3-4", text: "Tú guardarás en completa paz a aquel cuyo pensamiento en ti persevera.", phrase: "Yo soy tu roca eterna." },
-      { verse: "Salmo 20:7", text: "Estos confían en carros, y aquéllos en caballos; mas nosotros del nombre de Jehová nuestro Dios tendremos memoria.", phrase: "Confía en mí más que en tus fuerzas." },
+      { verse: "Salmo 20:7", text: "Estos confían en carros... mas nosotros del nombre de Jehová nuestro Dios tendremos memoria.", phrase: "Confía en mí más que en tus fuerzas." },
       { verse: "1 Pedro 5:7-10", text: "Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.", phrase: "Yo cuido de ti." },
-      { verse: "Hebreos 10:23", text: "Mantengamos firme, sin fluctuar, la profesión de nuestra esperanza, porque fiel es el que prometió.", phrase: "Permanece firme en la esperanza." },
-      { verse: "Gálatas 6:1-2", text: "Sobrellevad los unos las cargas de los otros, y cumplid así la ley de Cristo.", phrase: "Restaura con humildad." },
+      { verse: "Hebreos 10:23", text: "Mantengamos firme... la esperanza, porque fiel es el que prometió.", phrase: "Permanece firme en la esperanza." },
+      { verse: "Gálatas 6:1-2", text: "Sobrellevad los unos las cargas de los otros.", phrase: "Restaura con humildad." },
       { verse: "1 Corintios 13:1-13", text: "El amor es sufrido, es benigno... el amor nunca deja de ser.", phrase: "Sin amor, nada soy." },
       { verse: "1 Juan 4:7-21", text: "El que no ama, no ha conocido a Dios; porque Dios es amor.", phrase: "Dios es amor." },
-      { verse: "Juan 15:9-17", text: "Como el Padre me ha amado, así también yo os he amado; permaneced en mi amor.", phrase: "Permanece en mi amor." },
-      { verse: "Proverbios 17:9", text: "El que cubre la falta busca amistad; mas el que la divulga, aparta al amigo.", phrase: "El amor perdona y une." },
-      { verse: "Efesios 5:1-2", text: "Sed, pues, imitadores de Dios como hijos amados. Y andad en amor.", phrase: "Imita a Dios y ama." },
-      { verse: "Filipenses 2:1-5", text: "Nada hagáis por contienda o por vanagloria; antes bien con humildad.", phrase: "Vive en humildad y unidad." },
-      { verse: "Romanos 5:5", text: "El amor de Dios ha sido derramado en nuestros corazones por el Espíritu Santo.", phrase: "El amor ha sido derramado en ti." },
+      { verse: "Juan 15:9-17", text: "Permaneced en mi amor.", phrase: "Permanece en mi amor." },
+      { verse: "Proverbios 17:9", text: "El que cubre la falta busca amistad.", phrase: "El amor perdona y une." },
+      { verse: "Efesios 5:1-2", text: "Sed imitadores de Dios y andad en amor.", phrase: "Imita a Dios y ama." },
+      { verse: "Filipenses 2:1-5", text: "Nada hagáis por contienda... antes bien con humildad.", phrase: "Vive en humildad y unidad." },
+      { verse: "Romanos 5:5", text: "El amor de Dios ha sido derramado en nuestros corazones.", phrase: "El amor ha sido derramado en ti." },
       { verse: "Isaías 43:18-19", text: "No os acordéis de las cosas pasadas... he aquí que yo hago cosa nueva.", phrase: "Yo haré algo nuevo en ti." },
       { verse: "2 Corintios 5:17-21", text: "De modo que si alguno está en Cristo, nueva criatura es.", phrase: "Eres nueva creación." }
     ];
@@ -125,7 +144,10 @@
 
     days.forEach((day, index) => {
       const container = document.createElement("div");
+      const locked = index + 1 > daysPassed;
+
       container.className = "day";
+      if (locked) container.classList.add("locked");
 
       const savedText = localStorage.getItem(`journal${index}`) || "";
 
@@ -134,13 +156,15 @@
         <p><strong>📜 Texto bíblico:</strong> ${day.text}</p>
         <p><strong>💡 Frase del día:</strong> ${day.phrase}</p>
         <label for="journal${index}"><strong>📝 Mi reflexión del día:</strong></label>
-        <textarea id="journal${index}" placeholder="Escribe lo que sentiste, lo que entendiste, o una oración...">${savedText}</textarea>
+        <textarea id="journal${index}" placeholder="Escribe lo que sentiste, lo que entendiste, o una oración..." ${locked ? "disabled" : ""}>${savedText}</textarea>
       `;
 
-      const textarea = container.querySelector("textarea");
-      textarea.addEventListener("input", () => {
-        localStorage.setItem(`journal${index}`, textarea.value);
-      });
+      if (!locked) {
+        const textarea = container.querySelector("textarea");
+        textarea.addEventListener("input", () => {
+          localStorage.setItem(`journal${index}`, textarea.value);
+        });
+      }
 
       planDiv.appendChild(container);
     });
